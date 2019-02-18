@@ -153,5 +153,37 @@ function spinalCase(str) {
     return split.join("-");
 }
 
-console.log(spinalCase("thisIsSpinalTap"));
+// console.log(spinalCase("thisIsSpinalTap"));
+
+/**
+ * Translate the provided string to pig latin.
+ * Pig Latin takes the first consonant (or consonant cluster) of an English word,
+ * moves it to the end of the word and suffixes an "ay".
+ * If a word begins with a vowel you just add "way" to the end.
+ * Input strings are guaranteed to be English words in all lowercase.
+*/
+
+/**
+ * Translates the provided string to pig latin.
+ * @param str
+ * @return {*}
+ */
+function translatePigLatin(str) {
+    if (str.match(/^[aeiou]/)) return str + "way";
+
+    let addToEnd = "";
+    let cnt = 0;
+    for (let i = 0; i < str.length; i++) {
+        if (!str[i].match(/^[aeiou]/)) {
+            addToEnd = addToEnd + str[i];
+            cnt++;
+        } else {
+            break;
+        }
+    }
+    str = str.slice(cnt) + addToEnd + "ay";
+    return str;
+}
+
+console.log(translatePigLatin("glove"));
 
