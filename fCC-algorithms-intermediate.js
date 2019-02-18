@@ -56,3 +56,35 @@ function getSymmetricDifference(arr1, arr2) {
 }
 
 // console.log(getSymmetricDifference([1, 2, 3, 5], [1, 2, 3, 4, 5]));
+
+/**
+ * You will be provided with an initial array (the first argument in the destroyer function),
+ * followed by one or more arguments. Remove all elements from the initial array that are
+ * of the same value as these arguments.
+ * Note
+ * You have to use the arguments object.
+ */
+
+
+/**
+ * Removes all elements from the array that are of the same value as arguments of the function,
+ * that are provided after the array. Does not mutate the initial array.
+ * @param {Array} arr
+ * @return {Array} destroyed
+ */
+function destroyer(arr) {
+    let elemsToDel = Array.prototype.slice.call(arguments, 1);
+    let destroyed = [];
+    let cnt = 0;
+
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < elemsToDel.length; j++) {
+            if (arr[i] !== elemsToDel[j]) cnt++;
+        }
+        if (cnt === elemsToDel.length) destroyed.push(arr[i]);
+        cnt = 0;
+    }
+    return destroyed;
+}
+
+// console.log(destroyer([3, 5, 1, 2, 2], 2, 3, 5));
