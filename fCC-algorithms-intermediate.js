@@ -133,3 +133,25 @@ function whatIsInAName(collection, source) {
 //                         { first: "Romeo", last: "Montague" }
 //                         ],
 //                 { last: "Capulet" }));
+
+/**
+ * Convert a string to spinal case. Spinal case is all-lowercase-words-joined-by-dashes.
+ */
+
+/**
+ * Converts a string to spinal case.
+ * @param {String} str
+ * @return {String}
+ */
+function spinalCase(str) {
+    // "It's such a fine line between stupid, and clever."
+    // --David St. Hubbins
+    let split = str.split(/(?=[A-Z])|\s|-|_/);
+    for (let i = 0; i < split.length; i++) {
+        split[i] = split[i].toLowerCase();
+    }
+    return split.join("-");
+}
+
+console.log(spinalCase("thisIsSpinalTap"));
+
