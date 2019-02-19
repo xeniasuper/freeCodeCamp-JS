@@ -1,6 +1,6 @@
 "use strict";
 
-/**
+/* Problem 1
  * We'll pass you an array of two numbers. Return the sum of those two numbers plus the sum of all the numbers
  * between them.
  *
@@ -19,7 +19,7 @@ function sumAll(arr) {
 
 //console.log(sumAll([1, 4]));
 
-/**
+/* Problem 2
  * Compare two arrays and return a new array with any items only found in one of the two given arrays,
  * but not both. In other words, return the symmetric difference of the two arrays.
  * Remember to use Read-Search-Ask if you get stuck. Try to pair program. Write your own code.
@@ -57,7 +57,7 @@ function getSymmetricDifference(arr1, arr2) {
 
 // console.log(getSymmetricDifference([1, 2, 3, 5], [1, 2, 3, 4, 5]));
 
-/**
+/* Problem 3
  * You will be provided with an initial array (the first argument in the destroyer function),
  * followed by one or more arguments. Remove all elements from the initial array that are
  * of the same value as these arguments.
@@ -66,7 +66,7 @@ function getSymmetricDifference(arr1, arr2) {
  */
 
 
-/**
+/* Problem 4
  * Removes all elements from the array that are of the same value as arguments of the function,
  * that are provided after the array. Does not mutate the initial array.
  * @param {Array} arr
@@ -89,7 +89,7 @@ function destroyer(arr) {
 
 // console.log(destroyer([3, 5, 1, 2, 2], 2, 3, 5));
 
-/**
+/* Problem 5
  * Make a function that looks through an array of objects (first argument) and returns an array of
  * all objects that have matching name and value pairs (second argument).
  * Each name and value pair of the source object has to be present in
@@ -134,7 +134,7 @@ function whatIsInAName(collection, source) {
 //                         ],
 //                 { last: "Capulet" }));
 
-/**
+/* Problem 6
  * Convert a string to spinal case. Spinal case is all-lowercase-words-joined-by-dashes.
  */
 
@@ -155,7 +155,7 @@ function spinalCase(str) {
 
 // console.log(spinalCase("thisIsSpinalTap"));
 
-/**
+/* Problem 7
  * Translate the provided string to pig latin.
  * Pig Latin takes the first consonant (or consonant cluster) of an English word,
  * moves it to the end of the word and suffixes an "ay".
@@ -166,7 +166,7 @@ function spinalCase(str) {
 /**
  * Translates the provided string to pig latin.
  * @param str
- * @return {*}
+ * @return {String}
  */
 function translatePigLatin(str) {
     if (str.match(/^[aeiou]/)) return str + "way";
@@ -185,5 +185,31 @@ function translatePigLatin(str) {
     return str;
 }
 
-console.log(translatePigLatin("glove"));
+//console.log(translatePigLatin("glove"));
 
+/* Problem 7
+ Perform a search and replace on the sentence using the arguments provided and return the new sentence.
+ Note
+ Preserve the case of the first character in the original word when you are replacing it.
+ For example if you mean to replace the word "Book" with the word "dog", it should be replaced as "Dog"
+ */
+
+/**
+ * Performs a search and replaces on the sentence using the arguments provided and returns the new sentence.
+ * @param {String} str - the sentence to perform the search and replace on.
+ * @param {String} before - the word that you will be replacing.
+ * @param {String} after - what you will be replacing the second argument with.
+ * @return {String} - the new sentence.
+ */
+function myReplace(str, before, after) {
+    let re = new RegExp(before)
+    let idxBeforeStart = str.search(re);
+    let idxBeforeEnd = idxBeforeStart + before.length;
+
+    if (before.match(/^[A-Z]/)) {
+        after = after.slice(0, 1).toUpperCase() + after.slice(1);
+    }
+    return str.slice(0, idxBeforeStart) + after + str.slice(idxBeforeEnd);
+}
+
+console.log(myReplace("A quick brown fox jumped over the lazy dog", "jumped", "leaped"));
