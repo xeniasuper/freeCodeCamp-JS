@@ -329,3 +329,29 @@ function convertHTML(str) {
 }
 
 // console.log(convertHTML("Hamburgers < 'Pizza' < Tacos"));
+
+/* Problem 12
+* Given a positive integer num, return the sum of all odd Fibonacci numbers that are less than or equal to num
+*/
+
+/**
+ * Summarizes all odd Fibonacci numbers that are less than or equal to num
+ * @param {Number} num
+ * @return {Number}
+ */
+function sumOddFibs(num) {
+    let currFib = 1;
+    let prevFib = 1;
+    let sum = prevFib;
+
+    while (currFib <= num) {
+        if (currFib % 2 === 1) sum += currFib;
+        let tmp = currFib;
+        currFib = prevFib + currFib;
+        prevFib = tmp;
+    }
+    return sum;
+}
+
+// console.log(sumOddFibs(10));
+// console.log("" + sumOddFibs(1) + "\n" + sumOddFibs(1000));
