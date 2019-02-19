@@ -295,3 +295,37 @@ function uniteUnique(arr) {
 }
 
 // console.log(uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]));
+
+/* Problem 11
+* Convert the characters &, <, >, " (double quote), and ' (apostrophe),
+* in a string to their corresponding HTML entities.
+*/
+
+/**
+ * Converts the characters &, <, >, " (double quote), and ' (apostrophe), in a string
+ * to their corresponding HTML entities.
+ * @param {String} str
+ * @return {String}
+ */
+
+let charsEntitites = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&apos;"
+}
+
+function convertHTML(str) {
+    // &colon;&rpar;
+    let converted = str;
+    let keys = Object.keys(charsEntitites);
+
+    for (let i = 0; i < keys.length; i++) {
+        let re = new RegExp(keys[i], "g");
+        converted = converted.replace(re, charsEntitites[keys[i]]);
+    }
+    return converted;
+}
+
+// console.log(convertHTML("Hamburgers < 'Pizza' < Tacos"));
