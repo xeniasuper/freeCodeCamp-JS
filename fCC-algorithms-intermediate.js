@@ -202,7 +202,7 @@ function translatePigLatin(str) {
  * @return {String} - the new sentence.
  */
 function myReplace(str, before, after) {
-    let re = new RegExp(before)
+    let re = new RegExp(before);
     let idxBeforeStart = str.search(re);
     let idxBeforeEnd = idxBeforeStart + before.length;
 
