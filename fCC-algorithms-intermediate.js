@@ -355,3 +355,35 @@ function sumOddFibs(num) {
 
 // console.log(sumOddFibs(10));
 // console.log("" + sumOddFibs(1) + "\n" + sumOddFibs(1000));
+
+/* Problem 13
+Sum all the prime numbers up to and including the provided number.
+*/
+
+/**
+ * Summarizes all the prime numbers up to and including the provided number.
+ * @param num
+ * @return {number}
+ */
+
+function isPrime(num) {
+    let numDividers = 1;
+    if (num === 1) return false;
+    for (let i = 2; i <= num; i++) {
+        if (num % i === 0) numDividers++;
+        if (numDividers > 2) {
+            return false;
+        }
+    }
+    return true;
+}
+
+function sumPrimes(num) {
+    let sum = 0;
+    for (let i = 1; i <= num; i++) {
+        if (isPrime(i)) sum += i;
+    }
+    return sum;
+}
+
+//console.log(sumPrimes(10));
