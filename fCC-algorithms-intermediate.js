@@ -188,10 +188,10 @@ function translatePigLatin(str) {
 //console.log(translatePigLatin("glove"));
 
 /* Problem 7
- Perform a search and replace on the sentence using the arguments provided and return the new sentence.
- Note
- Preserve the case of the first character in the original word when you are replacing it.
- For example if you mean to replace the word "Book" with the word "dog", it should be replaced as "Dog"
+ * Perform a search and replace on the sentence using the arguments provided and return the new sentence.
+ * Note
+ * Preserve the case of the first character in the original word when you are replacing it.
+ * For example if you mean to replace the word "Book" with the word "dog", it should be replaced as "Dog"
  */
 
 /**
@@ -215,10 +215,11 @@ function myReplace(str, before, after) {
 //console.log(myReplace("A quick brown fox jumped over the lazy dog", "jumped", "leaped"));
 
 /* Problem 8
- The DNA strand is missing the pairing element. Take each character, get its pair, and return the results as a 2d array.
- Base pairs are a pair of AT and CG. Match the missing element to the provided character.
- Return the provided character as the first element in each array.
- For example, for the input GCG, return [["G", "C"], ["C","G"],["G", "C"]]
+ * The DNA strand is missing the pairing element. Take each character, get its pair,
+ * and return the results as a 2d array.
+ * Base pairs are a pair of AT and CG. Match the missing element to the provided character.
+ * Return the provided character as the first element in each array.
+ * For example, for the input GCG, return [["G", "C"], ["C","G"],["G", "C"]]
 */
 
 /**
@@ -247,4 +248,24 @@ function pairElement(str) {
     return pairs;
 }
 
-console.log(pairElement("ATCGA"));
+//console.log(pairElement("ATCGA"));
+
+/* Problem 9
+* Find the missing letter in the passed letter range and return it.
+* If all letters are present in the range, return undefined.
+*/
+
+/**
+ * Finds the missing letter in the passed letter range and returns it.
+ * @param {String} str
+ * @return {String}
+ */
+function fearNotLetter(str) {
+    let charCode = str.charCodeAt(0);
+    for (let i = 0; i < str.length; i++) {
+        if (str.charCodeAt(i) != charCode) return String.fromCharCode(charCode);
+        charCode++;
+    }
+}
+
+// console.log(fearNotLetter("abce"));
