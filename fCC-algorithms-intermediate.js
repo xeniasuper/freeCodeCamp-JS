@@ -212,4 +212,39 @@ function myReplace(str, before, after) {
     return str.slice(0, idxBeforeStart) + after + str.slice(idxBeforeEnd);
 }
 
-console.log(myReplace("A quick brown fox jumped over the lazy dog", "jumped", "leaped"));
+//console.log(myReplace("A quick brown fox jumped over the lazy dog", "jumped", "leaped"));
+
+/* Problem 8
+ The DNA strand is missing the pairing element. Take each character, get its pair, and return the results as a 2d array.
+ Base pairs are a pair of AT and CG. Match the missing element to the provided character.
+ Return the provided character as the first element in each array.
+ For example, for the input GCG, return [["G", "C"], ["C","G"],["G", "C"]]
+*/
+
+/**
+ * Matches A with T and C with G.
+ * @param {String} str - a DNA string
+ * @return {Array} - 2D array with matched pairs
+ */
+function pairElement(str) {
+    let pairs = [];
+    for (let letter of str) {
+        switch (letter) {
+            case "A":
+                pairs.push(["A", "T"]);
+                break;
+            case  "T":
+                pairs.push(["T", "A"]);
+                break;
+            case "C":
+                pairs.push(["C", "G"]);
+                break;
+            case "G":
+                pairs.push(["G", "C"]);
+                break;
+        }
+    }
+    return pairs;
+}
+
+console.log(pairElement("ATCGA"));
