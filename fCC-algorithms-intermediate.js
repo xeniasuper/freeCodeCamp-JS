@@ -387,3 +387,46 @@ function sumPrimes(num) {
 }
 
 //console.log(sumPrimes(10));
+
+/* Problem 14
+* Find the smallest common multiple of the provided parameters that can be evenly divided by both,
+* as well as by all sequential numbers in the range between these parameters.
+* The range will be an array of two numbers that will not necessarily be in numerical order.
+* */
+
+/**
+ * Finds the smallest common multiple of the provided parameters that can be evenly divided by both,
+ * as well as by all sequential numbers in the range between these parameters.
+ * @param {Array} arr
+ * @return {Number}
+ */
+function gcd(x, y) {
+    let max = Math.max(x, y);
+    let min = Math.min(x, y);
+
+    if (min === 0) return max;
+    return gcd(min, max % min);
+}
+
+function lcm(x, y) {
+    return Math.abs(x * y) / gcd(x, y);
+}
+
+function rangeLCM(arr) {
+    let min = Math.min(...arr);
+    let max = Math.max(...arr);
+    let rLCM = 1;
+
+    for (let i = min; i <= max; i++) {
+        rLCM = lcm(rLCM, i)
+    }
+    return rLCM;
+}
+
+console.log(rangeLCM([10, 2]));
+
+
+
+
+
+
