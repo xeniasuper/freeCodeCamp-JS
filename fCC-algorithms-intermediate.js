@@ -423,7 +423,40 @@ function rangeLCM(arr) {
     return rLCM;
 }
 
-console.log(rangeLCM([10, 2]));
+// console.log(rangeLCM([10, 2]));
+
+
+/* Problem 15
+* Given the array arr, iterate through and remove each element starting from the first element (the 0 index) until
+* the function func returns true when the iterated element is passed through it.
+* Then return the rest of the array once the condition is satisfied, otherwise,
+* arr should be returned as an empty array.
+*/
+
+/**
+ *
+ * @param arr
+ * @param func
+ * @return {Array}
+ */
+function dropElements(arr, func) {
+    // Drop them elements.
+    let drop = [...arr];
+    let flag = false;
+    let idx = 0;
+
+    while (flag === false) {
+        if (func(arr[idx]) === true) {
+            flag = true;
+            break;
+        };
+        drop.shift();
+        idx++;
+    }
+    return drop;
+}
+
+console.log(dropElements([1, 2, 3, 4], function(n) {return n >= 3;}));
 
 
 
