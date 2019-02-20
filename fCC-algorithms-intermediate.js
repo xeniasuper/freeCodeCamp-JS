@@ -434,9 +434,8 @@ function rangeLCM(arr) {
 */
 
 /**
- *
- * @param arr
- * @param func
+ * @param {Array} arr
+ * @param {Function} func
  * @return {Array}
  */
 function dropElements(arr, func) {
@@ -456,9 +455,38 @@ function dropElements(arr, func) {
     return drop;
 }
 
-console.log(dropElements([1, 2, 3, 4], function(n) {return n >= 3;}));
+//console.log(dropElements([1, 2, 3, 4], function(n) {return n >= 3;}));
+
+/* Problem 16
+* Flatten a nested array. You must account for varying levels of nesting.
+*/
 
 
+/**
+ * Flattens a nested array.
+ * @param {Array} arr
+ * @return {Array}
+ */
+
+
+function flatten(arr) {
+    // I'm a steamroller, baby
+    let flattened = [];
+
+    function steamrollArray(arr) {
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] instanceof Array) {
+                steamrollArray(arr[i]);
+            } else {
+                flattened.push(arr[i]);
+            }
+        }
+        return flattened;
+    }
+    return steamrollArray(arr);
+}
+
+console.log(flatten([1, [2], [3, [[4]]]]));
 
 
 
