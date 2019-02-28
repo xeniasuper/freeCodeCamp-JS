@@ -625,8 +625,15 @@ function addTogether() {
 // console.log(addTogether(2)(3));
 // console.log(addTogether("http://bit.ly/IqT6zt"));
 
-/*Problem 20*/
+/*Problem 20
+* Write a function that checks whether a string is a palindrome
+* */
 
+/**
+ * Checks whether a string is a palindrome
+ * @param {string} str
+ * @return {boolean}
+ */
 function palindrome(str) {
     // Good luck!
     str = str.toLowerCase().replace(/[^0-9a-z]/g, '');
