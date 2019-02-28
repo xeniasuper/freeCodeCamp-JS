@@ -263,7 +263,7 @@ function pairElement(str) {
 function fearNotLetter(str) {
     let charCode = str.charCodeAt(0);
     for (let i = 0; i < str.length; i++) {
-        if (str.charCodeAt(i) != charCode) return String.fromCharCode(charCode);
+        if (str.charCodeAt(i) !== charCode) return String.fromCharCode(charCode);
         charCode++;
     }
 }
@@ -461,7 +461,6 @@ function dropElements(arr, func) {
 * Flatten a nested array. You must account for varying levels of nesting.
 */
 
-
 /**
  * Flattens a nested array.
  * @param {Array} arr
@@ -470,7 +469,6 @@ function dropElements(arr, func) {
 
 
 function flatten(arr) {
-    // I'm a steamroller, baby
     let flattened = [];
 
     function steamrollArray(arr) {
@@ -486,8 +484,80 @@ function flatten(arr) {
     return steamrollArray(arr);
 }
 
-console.log(flatten([1, [2], [3, [[4]]]]));
+//console.log(flatten([1, [2], [3, [[4]]]]));
 
+/* Problem 17
+* Return an English translated sentence of the passed binary string.
+* Example
+* binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 " +
+    "01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 " +
+    "01100110 01110101 01101110 00100001 00111111") -> "Aren't bonfires fun!?"
+*/
 
+/**
+ * Translates an English sentence represented as a string of binary char codes to a sentence in English
+ * @param {string} str - a string of binary char codes
+ * @return {string}
+ */
+function binaryAgent(str) {
+    let translation = "";
+    const spaceCode = 32;
+    let spaceBinCode = decToBin(spaceCode);
 
+    let wordsBin = str.split(" " + spaceBinCode + " ");
+    let wordsDec = [];
 
+    for (let i = 0; i < wordsBin.length; i++) {
+        let wordBin = wordsBin[i].split(" ");
+        let wordDec = [];
+
+        for (let j = 0; j < wordBin.length; j++) {
+            let letterBin = wordBin[j];
+            wordDec.push(binToDec(letterBin));
+        }
+        wordsDec.push(wordDec);
+    }
+    for (let i = 0; i < wordsDec.length; i++) {
+        translation += String.fromCharCode(...wordsDec[i]) + " ";
+    }
+    return translation.trim();
+}
+
+/**
+ * Converts a string that represents a binary number to a decimal number
+ * @param {string} bin - a binary number in a string form
+ * @return {number}
+ */
+function binToDec(bin) {
+    let dec = 0;
+    for (let i = bin.length-1; i > 0; i--) {
+        let pwr = bin.length - 1 - i;
+        if (bin[i] === "1") dec += 2**pwr;
+    }
+    return dec;
+}
+
+//console.log(binToDec("01000001"));
+
+/**
+ * Converts a decimal number to a string that represents a binary number
+ * @param {number} dec
+ * @return {string}
+ */
+function decToBin(dec) {
+    let bin = "";
+    while (Math.floor(dec / 2) !== 0) {
+        bin = dec % 2 + bin;
+        dec = Math.floor(dec / 2);
+    }
+    bin = dec + bin;
+
+    while (bin.length !== 8) {
+        bin = 0 + bin;
+    }
+    return bin;
+}
+
+ // console.log(binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 " +
+ //    "01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 " +
+ //    "01100110 01110101 01101110 00100001 00111111"));
