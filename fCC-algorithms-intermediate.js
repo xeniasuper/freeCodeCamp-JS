@@ -604,6 +604,14 @@ function truthCheck(collection, pred) {
  * addTogether("http://bit.ly/IqT6zt") -> undefined
 */
 
+/**
+ * Sums two arguments together. If only one argument is provided,
+ * then returns a function that expects one argument and returns the sum.
+ * @return {*} - returns
+ *                     - sum in case when 2 arguments are provided
+ *                     - a function that expects one argument and returns the sum if only one argument is provided
+ *                     - undefined in case when one of the arguments is not a number
+ */
 function addTogether() {
     let args = [...arguments];
     for (let i = 0; i < args.length; i++) {
@@ -612,7 +620,23 @@ function addTogether() {
     if (args.length === 1) return (num) => addTogether(args[0], num);
     else return args.reduce((sum, num) => sum += num);
 }
+//
+// console.log(addTogether(2,3));
+// console.log(addTogether(2)(3));
+// console.log(addTogether("http://bit.ly/IqT6zt"));
 
-console.log(addTogether(2,3));
-console.log(addTogether(2)(3));
-console.log(addTogether("http://bit.ly/IqT6zt"));
+/*Problem 20*/
+
+function palindrome(str) {
+    // Good luck!
+    str = str.toLowerCase().replace(/[^0-9a-z]/g, '');
+
+    let strReversed = str.split("").reverse();
+
+    for (let i = 0; i < str.length / 2; i++) {
+        if (str[i] !== strReversed[i]) return false;
+    }
+    return true;
+}
+
+//palindrome("not a palindrome");
