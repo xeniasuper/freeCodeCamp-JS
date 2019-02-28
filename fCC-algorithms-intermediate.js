@@ -561,3 +561,58 @@ function decToBin(dec) {
  // console.log(binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 " +
  //    "01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 " +
  //    "01100110 01110101 01101110 00100001 00111111"));
+
+
+/*
+* Problem 18
+* You are given an array collection of objects. The predicate pre will be an object property
+* and you need to return true if its value is truthy. Otherwise, return false.
+* */
+
+/**
+ * Checks whether a an object property is truthy on all elements of a collection of objects
+ * @param {Array} collection - an array of objects
+ * @param {String} pre - an object property
+ * @return {boolean}
+ */
+function truthCheck(collection, pred) {
+    let cnt = 0;
+    for (let i = 0; i < collection.length; i++) {
+        for (let property in collection[i]) {
+            if (property === pred) {
+                if (collection[i][property]) cnt++;
+            }
+        }
+    }
+    return cnt === collection.length;
+}
+
+// console.log(truthCheck([
+//                                     {"user": "Tinky-Winky", "sex": "male"},
+//                                     {"user": "Dipsy", "sex": "male"},
+//                                     {"user": "Laa-Laa", "sex": "female"},
+//                                     {"user": "Po", "sex": "female"}
+//                                 ],
+//                             "sex"));
+
+/* Problem 19
+* Create a function that sums two arguments together. If only one argument is provided,
+* then return a function that expects one argument and returns the sum.
+* Examples:
+ * addTogether(2, 3) -> 5
+ * addTogether(2)(3) -> 5
+ * addTogether("http://bit.ly/IqT6zt") -> undefined
+*/
+
+function addTogether() {
+    let args = [...arguments];
+    for (let i = 0; i < args.length; i++) {
+        if (typeof args[i] !== "number") return undefined;
+    }
+    if (args.length === 1) return (num) => addTogether(args[0], num);
+    else return args.reduce((sum, num) => sum += num);
+}
+
+console.log(addTogether(2,3));
+console.log(addTogether(2)(3));
+console.log(addTogether("http://bit.ly/IqT6zt"));
